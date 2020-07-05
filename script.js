@@ -24,3 +24,6 @@ function checkSecond(sec) {
     if (sec < 0) { sec = "59" };
     return sec;
 }
+
+var question = document.getElementById("question");
+var choices = document.getElementsByClassName("choice-text");
