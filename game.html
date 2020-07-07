@@ -12,9 +12,21 @@
 </head>
 
 <body>
-    <div>Time left = <span id="timer"></span></div>
+<div id="time-left">Time Left:</div>
+<span id="timer" class="justify-center flex-column"></span>
+
     <div class="container">
         <div id="game" class="justify-center flex-column">
+            <div id="hud">
+                <div id="hud-item">
+                  <p class="hud-prefix">
+                      Score
+                  </p>
+                  <h1 class="hud-main-text" id="score">
+                      0
+                  </h1>
+                </div>
+            </div>
             <h2 id="question">What is Javascript?</h2>
             <div class="choice-container">
                 <p class="choice-prefix">A</p>

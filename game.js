@@ -27,6 +27,7 @@ function checkSecond(sec) {
 
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
+const scoreText = document.getElementById('score');
 
 let currentQuestion = {};
 let acceptingAnswers = true;
@@ -34,6 +35,7 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
 
+//List of questions
 var questions = [
     {
         question: "Inside the HTML which tag do we use for Javascript?",
@@ -90,8 +92,9 @@ startGame = () => {
 
 getNewQuestion = () => {
     if (availableQuesions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+        localStorage.setItem("mostRecentScore", score);
         //go to the end page
-        return window.location.assign('/end.html');
+        return window.location.assign('end.html');
     }
     questionCounter++;
     const questionIndex = Math.floor(Math.random() * availableQuesions.length);
@@ -114,8 +117,26 @@ choices.forEach((choice) => {
         acceptingAnswers = false;
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset['number'];
-        getNewQuestion();
+
+        const classToApply = 
+              selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+
+              if (classToApply === "correct") {
+                  incrementScore(CORRECT_BONUS);
+              }
+        
+        selectedChoice.parentElement.classList.add(classToApply);
+
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+            getNewQuestion();
+        }, 1000);
     });
 });
+
+incrementScore = num => {
+    score += num; 
+    scoreText.innerText = score; 
+};
 
 startGame();
