@@ -118,13 +118,14 @@ choices.forEach((choice) => {
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset['number'];
 
-        const classToApply = 
-              selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+        const classToApply =
+            selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
 
-              if (classToApply === "correct") {
-                  incrementScore(CORRECT_BONUS);
-              }
-        
+        if (classToApply === "correct") {
+            incrementScore(CORRECT_BONUS);
+
+         }
+
         selectedChoice.parentElement.classList.add(classToApply);
 
         setTimeout(() => {
@@ -135,8 +136,10 @@ choices.forEach((choice) => {
 });
 
 incrementScore = num => {
-    score += num; 
-    scoreText.innerText = score; 
+    score += num;
+    scoreText.innerText = score;
+
+
 };
 
 startGame();
